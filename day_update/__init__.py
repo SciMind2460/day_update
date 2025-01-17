@@ -1,14 +1,23 @@
 import datetime
+<<<<<<< HEAD
 import os
+=======
+import secrets
+>>>>>>> de7a2db2c11e85cb4978d18515d9f267fcd3c52b
 
 from dotenv import load_dotenv
 
 from .day_update import check_for_weekend, handle_assignments, handle_appendices, handle_main_text, send_message, \
     handle_timetable
 
+<<<<<<< HEAD
 def main():
     load_dotenv()
     webhook_url: str = os.getenv("WEBHOOK_URL_1")
+=======
+def main(webhook_url: str):
+    load_dotenv()
+>>>>>>> de7a2db2c11e85cb4978d18515d9f267fcd3c52b
     weekday: int = datetime.date.today().weekday()
     timetable = handle_timetable()
     if weekday > 4:

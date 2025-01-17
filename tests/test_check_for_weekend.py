@@ -1,5 +1,5 @@
 import unittest
-import day_update.day_update
+import day_update.core
 
 class TestCheckWeekend(unittest.TestCase):
     def test_check_for_weekend(self) :

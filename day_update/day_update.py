@@ -17,6 +17,24 @@ class Weekday(Enum):
 
 
 weekdays = list(Weekday)
+weekdays_working = [Weekday.MONDAY, Weekday.TUESDAY, Weekday.WEDNESDAY, Weekday.THURSDAY, Weekday.FRIDAY]
+weekdaynames = [weekday.name for weekday in weekdays]
+
+
+def handle_timetable(timetable_file: str = "timetable.json") -> list[dict[str, str | None]]:
+    with open(timetable_file) as timetable:
+        json_decoded = json.load(timetable)
+    change_timetable = input("Do you want to change the timetable?").lower() == 'y'
+    if change_timetable:
+        json_decoded = []
+        timetable_values = [input(f"Enter the new subjects for {weekday}").split() for weekday in weekdays_working]
+        for i, timetable_value in enumerate(timetable_values):
+            for subject in timetable_value:
+                json_decoded[i][subject] = None
+    with open(timetable_file, 'w') as timetable:
+        json.dump(json_decoded, timetable)
+    return json_decoded
+
 
 def initalize_db():
     conn = sqlite3.connect("assignments.db")

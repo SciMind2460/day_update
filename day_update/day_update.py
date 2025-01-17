@@ -51,7 +51,7 @@ def handle_main_text(timetable: list[dict[str, str | None]], weekday: int) -> st
     for subject, description in today_timetable.items():
         description = input(f'Enter a description for the subject {subject}.')
         today_timetable[subject] = description
-    message_list = [f'{subject}: {description}\n' for subject, description in todays_timetable.items()]
+    message_list = [f'{subject}: {description}\n' for subject, description in today_timetable.items()]
     message = ''.join(message_list)
     return message
 

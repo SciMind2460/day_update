@@ -92,6 +92,7 @@ def handle_appendices(appendices):
     appendix_message = ''.join(appendix_strings)
     return appendix_message
 
+
 def send_message(webhook_url: str | bytes, message: str):
     headers = {
         "Content-Type": "application/json; charset=UTF-8"

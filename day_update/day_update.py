@@ -26,12 +26,6 @@ def initalize_db():
     conn.commit()
     conn.close()
 
-def should_be_removed(line: str) -> bool:
-    _, _, due_date_string = line.split(',', maxsplit=2)
-    due_date = datetime.strptime(due_date_string, "%d/%m/%y").date()
-    if due_date < datetime.date.today():
-        return True
-    return False
 
 def remove_old_assignments():
     conn = sqlite3.connect("assignments.db")

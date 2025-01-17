@@ -27,23 +27,15 @@ def should_be_removed(line: str) -> bool:
     return False
 
 
-def check_for_weekend(weekday_number: int) -> int:
-    if weekday_number > 4:
-        is_makeup_day: bool = input("Is today a make-up day for a holiday? (y/n)").lower() == 'y'
-        if not is_makeup_day:
-            print("Sorry, but today is not a day for the request to be sent.")
-            exit()
-        which_day_to_make_up_for: str = input(
-            "Which day is today supposed to make up for? Reply with the full name of the day.").upper()
-        if not any(weekdaylist == which_day_to_make_up_for for weekdaylist in weekdays):
-            print("You have made an illegal input! Restart the process!")
-            os.execv(sys.argv[0], sys.argv)
-        for weekdaylist in weekdays:
-            if weekdaylist.name == which_day_to_make_up_for:
-                weekday_number = weekdaylist.value
-                return weekday_number
-    else:
-        return weekday_number
+
+def check_for_weekend(make_up_for_day='') -> int:
+    make_up_for_day = make_up_for_day.upper()
+    if make_up_for_day not in weekdaynames:
+        raise ValueError("Invalid weekday name provided.")
+    for weekdayitem in weekdays:
+        if weekdayitem.name == make_up_for_day:
+            weekday_number = weekdayitem.value
+            return weekday_number
 
 
 def handle_main_text(timetable: list[dict[str, str | None]], weekday: int) -> str:

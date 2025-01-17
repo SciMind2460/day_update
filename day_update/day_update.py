@@ -57,13 +57,8 @@ def handle_main_text(timetable: list[dict[str, str | None]], weekday: int) -> st
 
 
 def handle_assignments(assignment_number: int) -> str:
-    assignments = []
-    with open('assignments.txt') as file:
-        lines = file.readlines()
-    with open('assignments.txt', 'w') as file:
-        if file.read(1):
-            filtered_lines = [line for line in lines if not should_be_removed(line)]
-            file.write('\n'.join(filtered_lines))
+    initalize_db()
+    remove_old_assignments()
     if assignment_number == 0:
         print("Ok! Proceeding to next stage.")
     else:

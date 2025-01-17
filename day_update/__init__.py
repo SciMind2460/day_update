@@ -1,14 +1,13 @@
 import datetime
-import os
+import secrets
 
 from dotenv import load_dotenv
 
 from .day_update import check_for_weekend, handle_assignments, handle_appendices, handle_main_text, send_message, \
     handle_timetable
 
-def main():
+def main(webhook_url: str):
     load_dotenv()
-    webhook_url: str = os.getenv("WEBHOOK_URL_1")
     weekday: int = datetime.date.today().weekday()
     timetable = handle_timetable()
     if weekday > 4:

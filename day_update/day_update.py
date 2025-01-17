@@ -62,22 +62,23 @@ def handle_assignments(assignment_number: int) -> str:
     if assignment_number == 0:
         print("Ok! Proceeding to next stage.")
     else:
-        with open('assignments.txt', 'a') as file:
-            for assignment_numeral in range(assignment_number):
-                subject = input("Which subject is this assignment of?")
-                description = input("Describe the assignment.")
-                due_date_str = input("Which date is the assignment due on? Enter in DD/MM/YY format.")
-                file.write(f'{subject},{description},{due_date_str}\n')
-    with open('assignments.txt', 'r') as file:
-        for line in file:
-            line = line.rstrip('\n')
-            subject, description, due_date_str = line.split(sep=',', maxsplit=2)
-            assignments.append((subject, description, due_date_str))
-    assignment_strs = []
-    for assignment in assignments:
-        subject, description, due_date_str = assignment
-        assignment_str = f'{subject} assignment: {description}. Due on {due_date_str}\n'
-        assignment_strs.append(assignment_str)
+        conn = sqlite3.connect("assignments.db")
+        cursor = conn.cursor()
+        for i in range(assignment_number):
+            subject = input("What subject is this assignment for?")
+            description = input("Enter a short description for the assignment.")
+            due_date = input("Which date is this assignment due on? Enter in DD/MM/YY format.")
+            cursor.execute("INSERT INTO assignments (subject, description, due_date) VALUES (?, ?, ?)",
+                           (subject, description, due_date))
+        conn.commit()
+        conn.close()
+    conn = sqlite3.connect("assignments.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT (subject, description, due_date) FROM assignments")
+    assignments = cursor.fetchall()
+    conn.close()
+    assignment_strs = [f'{subject} assignment: {description}. Due on {due_date}\n' for subject, description, due_date in
+                       assignments]
     message_assignment_str = "Assignments:\n" + '\n'.join(assignment_strs)
     return message_assignment_str
 

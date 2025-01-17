@@ -26,6 +26,12 @@ def should_be_removed(line: str) -> bool:
         return True
     return False
 
+def remove_old_assignments():
+    conn = sqlite3.connect("assignments.db")
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM assignments WHERE due_date < DATE('now')")
+    conn.commit()
+    conn.close()
 
 
 def check_for_weekend(make_up_for_day='') -> int:

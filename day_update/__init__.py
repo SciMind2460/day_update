@@ -10,8 +10,13 @@ def main():
     load_dotenv()
     webhook_url: str = os.getenv("WEBHOOK_URL_1")
     weekday: int = datetime.date.today().weekday()
-    weekday = check_for_weekend(weekday)
-    message = handle_maintext(timetable=timetable, weekday=weekday)
+    timetable = handle_timetable()
+    if weekday > 4:
+        make_up_day = input("Which day do we have to make up for? Reply in the full format.").upper()
+        weekday = check_for_weekend(make_up_day)
+    if weekday == -1:
+        exit("Today is not a school day!")
+    message = handle_main_text(timetable=timetable, weekday=weekday)
     send_message(webhook_url, message)
     add_assignments = int(input("How many assignments do you want to add?"))
     message_assignment_str = handle_assignments(add_assignments)

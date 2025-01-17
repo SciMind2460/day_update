@@ -1,4 +1,5 @@
 import unittest
+import day_update.day_update
 
 
 class UnitTests(unittest.TestCase):

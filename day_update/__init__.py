@@ -3,13 +3,8 @@ import os
 from dotenv import load_dotenv
 from .day_update import check_for_weekend, handle_assignments, handle_appendices, handle_main_text, send_message
 
-timetable: list[dict[str, str | None]] = [
-    {"Humanities": None, "Marathi": None, "Library": None, "Biology": None, "Mathematics": None},
-    {"French": None, "Chemistry": None, "PE": None, "English": None},
-    {"Homeroom": None, "ICT": None, "Humanities": None, "Physics": None, "Mathematics": None},
-    {"EM": None, "Math": None, "ICT": None, "iPropel": None, "English": None},
-    {"Art": None, "French": None, "Humanities": None, "SEL": None, "English": None}
-]
+from .day_update import check_for_weekend, handle_assignments, handle_appendices, handle_main_text, send_message, \
+    handle_timetable
 
 def main():
     load_dotenv()

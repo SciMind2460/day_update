@@ -18,6 +18,13 @@ class Weekday(Enum):
 
 weekdays = list(Weekday)
 
+def initalize_db():
+    conn = sqlite3.connect("assignments.db")
+    cursor = conn.cursor()
+    cursor.execute(
+        "CREATE TABLE IF NOT EXISTS assignments (id INTEGER PRIMARY KEY AUTOINCREMENT, subject TEXT, description TEXT, due_date TEXT")
+    conn.commit()
+    conn.close()
 
 def should_be_removed(line: str) -> bool:
     _, _, due_date_string = line.split(',', maxsplit=2)

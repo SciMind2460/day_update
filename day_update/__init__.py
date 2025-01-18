@@ -6,7 +6,6 @@ from .core import *
 
 def main(webhook_url: str):
     load_dotenv()
->>>>>>> de7a2db2c11e85cb4978d18515d9f267fcd3c52b
     weekday: int = datetime.date.today().weekday()
     timetable = handle_timetable()
     if weekday > 4:

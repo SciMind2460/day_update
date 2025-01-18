@@ -35,5 +35,7 @@ def main(webhook_url: str):
     send_message(webhook_url=webhook_url, message=appendices_message)
     exit()
 
+__all__ = ["check_for_weekend", "handle_appendices", "handle_assignments", "handle_main_text", "handle_timetable", "main", "send_message" ]
+
 if __name__ == "__main__":
     main()

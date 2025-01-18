@@ -1,5 +1,4 @@
 import datetime
-<<<<<<< HEAD
 import os
 =======
 import secrets

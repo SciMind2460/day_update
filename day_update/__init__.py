@@ -27,4 +27,5 @@ def main(webhook_url: str):
 __all__ = ["Weekday", "weekdays", "weekdays_working", , "weekdaynames", "initalize_db", "remove_old_assignments", "check_for_weekend", "handle_appendices", "handle_assignments", "handle_main_text", "handle_timetable", "main", "send_message" ]
 
 if __name__ == "__main__":
-    main()
+    args = input("What is the webhook url?")
+    main(args)

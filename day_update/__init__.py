@@ -7,8 +7,7 @@ import secrets
 
 from dotenv import load_dotenv
 
-from .day_update import check_for_weekend, handle_assignments, handle_appendices, handle_main_text, send_message, \
-    handle_timetable
+from .day_update import *
 
 <<<<<<< HEAD
 def main():

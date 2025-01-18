@@ -1,8 +1,4 @@
 import datetime
-import os
-=======
-import secrets
->>>>>>> de7a2db2c11e85cb4978d18515d9f267fcd3c52b
 
 from dotenv import load_dotenv
 

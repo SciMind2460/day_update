@@ -4,11 +4,6 @@ from dotenv import load_dotenv
 
 from .core import *
 
-<<<<<<< HEAD
-def main():
-    load_dotenv()
-    webhook_url: str = os.getenv("WEBHOOK_URL_1")
-=======
 def main(webhook_url: str):
     load_dotenv()
 >>>>>>> de7a2db2c11e85cb4978d18515d9f267fcd3c52b

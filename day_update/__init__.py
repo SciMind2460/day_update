@@ -7,7 +7,7 @@ import secrets
 
 from dotenv import load_dotenv
 
-from .day_update import *
+from .core import *
 
 <<<<<<< HEAD
 def main():
